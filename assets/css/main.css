@@ -42,7 +42,7 @@ ol, ul {
 }
 div#nav{ position:absolute; width:100%; height:150px; background:#000; } ul{ margin:0; padding:0; }
 
-li{ display:inline; color: #fff; }
+li{ display:inline; color: #000; }
 
 blockquote, q {
 	quotes: none;
@@ -79,6 +79,104 @@ input, select, textarea {
 	appearance: none;
 }
 
+/* Navigation Bar */
+
+:root{
+	--primary-color: #ffffff;
+}
+
+nav{
+	background-color: var(--primary-color);
+	border-bottom:1px solid var(--hover-color);
+}
+
+ nav ul {
+	list-style: none;
+	display: flex;
+ }
+
+ nav li{
+	display: flex;
+ }
+
+ nav .home-li{
+	margin-right: auto;
+ }
+ nav a{
+	display: flex;
+	text-decoration: none;
+	color: var(--text-color);
+	padding: 1em 2em;
+ }
+
+ nav a:hover{
+	background-color: var(--hover-color);
+ }
+
+ #open-sidebar-button{
+	display: none;
+	background: none;
+	border: none;
+	padding: 1em;
+	margin-left: auto;
+	cursor: pointer;
+ }
+
+  #close-sidebar-button{
+	display: none;
+	background: none;
+	border: none;
+	padding: 1em;
+	cursor: pointer;
+ }
+
+ #overlay{
+	position: fixed;
+	inset: 0;
+	z-index: 9;
+	display: none;
+ }
+
+ @media screen and (max-width: 900px){
+	#open-sidebar-button, #close-sidebar-button{
+		display: block;
+	}
+	nav{
+		position: fixed;
+		top: 0;
+		right: -100%;
+		height: 100vh;
+		width: min(15em, 100%);
+		z-index: 10;
+		border-left: 1px solid var(--hover-color);
+		transition: right 300ms ease-out;
+ }
+
+ nav.show{
+	right: 0;
+ }
+
+ nav.show ~ #overlay{
+	display: block;
+ }
+
+ nav.show{
+	display: block;
+ }
+
+ nav ul{
+	width: 100%;
+	flex-direction: column;
+ }
+ nav a{
+	width: 100%;
+	padding-left: 2.5em;
+ }
+
+ nav .home-li{
+	margin-right: unset;
+ }
+}
 /* Basic */
 
 	@-ms-viewport {
@@ -2111,7 +2209,7 @@ input, select, textarea {
 		transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
 		border: 0;
 		cursor: pointer;
-		display: inline-block;
+		display: inline-flex;
 		font-weight: 400;
 		letter-spacing: 0.125em;
 		text-align: center;
@@ -2126,6 +2224,8 @@ input, select, textarea {
 		padding: 0 2.5em;
 		text-overflow: ellipsis;
 		overflow: hidden;
+  		align-items: center;
+		justify-content: center;
 	}
 
 		input[type="submit"].icon:before,
